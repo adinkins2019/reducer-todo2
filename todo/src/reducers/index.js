@@ -19,7 +19,9 @@ export const initialState = {
 
 
 //CLEAR_COMPLETED
-export default const TodoReducer = (state=initialState, action) => {
+
+
+const TodoReducer = (state=initialState, action) => {
     switch(action.type){
         case "ADD_TODO":
             return {
@@ -32,8 +34,26 @@ export default const TodoReducer = (state=initialState, action) => {
                     }]
             }
         case "TOGGLE_COMPLETED":
+            return {
+                ...state,
+                todos: [
+                    state.todos.map(todo => {
+                        todo.id === action.payload ? 
+                        {...todo, completed: !todo.completed} :
+                        todo
+                    }),
+                    
+                ]
+            }
         case "CLEAR_COMPLETED":
+            return {
+                ...state,
+                todos: state.todos.filter(todo => !todo.completed)
+                
+            }
         default:
             return state;
     }
 }
+
+export default TodoReducer;
