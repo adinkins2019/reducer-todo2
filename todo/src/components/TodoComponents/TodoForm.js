@@ -9,7 +9,7 @@ export default function TodoForm({addTodo, clearCompleted}) {
         setInput('')            //sets value of input back to an empty string
     }
     const clearAll = (event) => {
-        evemt.preventDefault();
+        event.preventDefault();
         clearCompleted();
     }
     return (
